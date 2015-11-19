@@ -1,3 +1,14 @@
+<<<<<<< HEAD
+=======
+
+/*
+ * Name: Gregory Smilski, Graeme Crawley, Alexandria Crump
+ * MacID: smilsksi, crawleg, crumpal
+ * Student Number: 1404091,  1417993, 1310858
+ * Description:
+ */
+
+>>>>>>> 0a92b213e604396e71c62a184b80e6596e3c9dfd
 public class UserInterface {
 	private array readables;
 	private array audioProducts;
