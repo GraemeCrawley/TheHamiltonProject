@@ -1,4 +1,3 @@
-
 public class UserInterface {
 	private array readables;
 	private array audioProducts;
@@ -11,6 +10,5 @@ public class UserInterface {
 	public void getAudioProducts(); // Fetches all audio products from the files and places in them in the readables array
 	public void showReadables(); //Displays all readable for browsing
 	public void showAudioProducts(); // Displays all audio products for browsing
-
-}
+	
 }
