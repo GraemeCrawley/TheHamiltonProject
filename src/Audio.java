@@ -1,4 +1,3 @@
-
 /*
  * Name: Gregory Smilski, Graeme Crawley, Alexandria Crump
  * MacID: smilsksi, crawleg, crumpal

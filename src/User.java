@@ -7,8 +7,10 @@
  */
 
 public class User {
+	@SuppressWarnings("unused")
 	private String username;
 	public String getUsername(){ // stores the username
+		return "hello";
 	}
 }
 
