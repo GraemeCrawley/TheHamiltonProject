@@ -11,13 +11,13 @@ public class UserInterface {
 	private Array readables;
 	@SuppressWarnings("unused")
 	private Array audioProducts;
-	@SuppressWarnings("unused")
 	private int currentPage; // the page number (P1..P10)
 	public int getCurrentPage(){ //This method is for page navigation. Based on the values of the state variable, call different pages
 		return 2;
 	}
-	public int changeCurrentPage(){// This method is for page navigation. It should change to current page and show the content.
-		return 3;
+	public int changeCurrentPage(int n){// This method is for page navigation. It should change to current page and show the content.
+		currentPage = n;
+		return n;
 	}
 	public void getReadables() {// Fetches all readable from the files and places them in the readable array
 	}
