@@ -6,6 +6,8 @@
  * Description:
  */
 
+//Changed this
+
 public abstract class Item{
 	public abstract String getInfo();
 	public abstract int getPrice();
