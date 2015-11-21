@@ -11,8 +11,9 @@ import java.util.Scanner;
 public class HWK4_crawleg{
 	public static void main(String[] args){
 		int n = 0;
-		String k = "";
+		
 		while(n != 3417){
+			try{
 			//Login Screen
 			System.out.println("1. Sign in");
 			System.out.println("2. Sign up");
@@ -22,18 +23,18 @@ public class HWK4_crawleg{
 			
 			//If Sign In
 			if (n==1){
-				boolean t = false;
-				System.out.print("Enter your username:");
+				System.out.print("Enter your username: ");
 				Scanner input2 = new Scanner(System.in);
 				String data2 = input2.nextLine();
+				System.out.println("");
 				//Scanning the Users.txt file...
-				t = search(data2, "Users.txt");
-				if (t == false){
-					System.out.println("Access Denied");
+				if (search(data2, "Users.txt") == false){
+					System.out.println("No Access"+"\n");
 					continue;
 				}
 				else{
-					System.out.println("Welcome "+data2);
+					System.out.println("Welcome "+data2+"\n");
+					
 				}
 				
 			}
@@ -42,6 +43,7 @@ public class HWK4_crawleg{
 				System.out.println("Choose your username:");
 				Scanner input3 = new Scanner(System.in);
 				String data3 = input3.nextLine();
+				System.out.println("");
 				//If exists
 				if(search(data3, "Users.txt")==true){
 					System.out.println("This name already exists, please choose another");
@@ -55,7 +57,7 @@ public class HWK4_crawleg{
 						bw.write(data3);
 						bw.newLine();
 					    bw.flush();
-						System.out.println("Username successfully added");
+						System.out.println("Username successfully added"+"/n");
 						continue;
 					}
 					catch (FileNotFoundException e){
@@ -68,7 +70,15 @@ public class HWK4_crawleg{
 					}
 				}
 			}
+			}
+			catch (java.util.InputMismatchException e){
+				System.out.println("/n"+"Please only enter integers"+"\n");
+				
+				continue;
+			}
 		}
+		
+		
 			
 	}
 	//Function to search file for string
@@ -78,6 +88,11 @@ public class HWK4_crawleg{
 			final Scanner scanner = new Scanner(file);	
 			while (scanner.hasNextLine()) {
 				   final String lineFromFile = scanner.nextLine();
+				   System.out.println(s);
+				   //Check for blank 
+				   if(s==""){
+					   return false;
+				   }
 				   if(lineFromFile.contains(s)) {
 				       return true;
 				   }
