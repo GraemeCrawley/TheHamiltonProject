@@ -46,7 +46,7 @@ public class HWK4_crawleg{
 				System.out.println("");
 				//If exists
 				if(search(data3, "Users.txt")==true){
-					System.out.println("This name already exists, please choose another");
+					System.out.println("This name already exists, please choose another"+ "\n");
 					continue; //TELL THEM IT ALREADY EXISTS AND HAVE THEM REENTER TO RETRY
 				}
 				//Uname doesn't exist
@@ -57,7 +57,7 @@ public class HWK4_crawleg{
 						bw.write(data3);
 						bw.newLine();
 					    bw.flush();
-						System.out.println("Username successfully added"+"/n");
+						System.out.println("Username successfully added"+"\n");
 						continue;
 					}
 					catch (FileNotFoundException e){
@@ -72,7 +72,7 @@ public class HWK4_crawleg{
 			}
 			}
 			catch (java.util.InputMismatchException e){
-				System.out.println("/n"+"Please only enter integers"+"\n");
+				System.out.println("\n"+"Please only enter integers"+"\n");
 				
 				continue;
 			}
@@ -88,9 +88,8 @@ public class HWK4_crawleg{
 			final Scanner scanner = new Scanner(file);	
 			while (scanner.hasNextLine()) {
 				   final String lineFromFile = scanner.nextLine();
-				   System.out.println(s);
 				   //Check for blank 
-				   if(s==""){
+				   if(s=="" || s=="\n"){
 					   return false;
 				   }
 				   if(lineFromFile.contains(s)) {
