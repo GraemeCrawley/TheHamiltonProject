@@ -52,11 +52,18 @@ public class HWK4_crawleg{
 					try{
 						//Write to file
 						BufferedWriter bw = new BufferedWriter(new FileWriter("Users.txt", true));
-						
+						bw.write(data3);
+						bw.newLine();
+					    bw.flush();
 						System.out.println("Username successfully added");
 						continue;
 					}
 					catch (FileNotFoundException e){
+						System.out.println("FileNotFoundException");
+						continue;
+					}
+					catch (IOException e){
+						System.out.println("IOException");
 						continue;
 					}
 				}
@@ -71,16 +78,13 @@ public class HWK4_crawleg{
 			final Scanner scanner = new Scanner(file);	
 			while (scanner.hasNextLine()) {
 				   final String lineFromFile = scanner.nextLine();
-				   if(lineFromFile.contains(s)) { 
+				   if(lineFromFile.contains(s)) {
 				       return true;
-				   }
-				   else{
-					   return false;
 				   }
 				}
 		}
 		catch (FileNotFoundException e){
-			continue;
+			
 		}
 		return false;
 	}
