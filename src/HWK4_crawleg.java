@@ -11,6 +11,8 @@ import java.util.Scanner;
 public class HWK4_crawleg{
 	public static void main(String[] args){	
 		int n = 0;
+		Scanner inputScanner = new Scanner(System.in);
+		String scannerResult = "";
 		while(n != 3417){
 			try{
 			UserInterface s = new UserInterface();
@@ -19,11 +21,15 @@ public class HWK4_crawleg{
 			System.out.println("1. Sign in");
 			System.out.println("2. Sign up");
 			System.out.print("Choose your option: ");
-			n = Integer.parseInt(scanner());
+			scannerResult = inputScanner.nextLine();
+			System.out.println("");
+			n = Integer.parseInt(scannerResult);
 			//If Sign In
 			if (n==1){
 				System.out.print("Enter your username: ");
-				String data = scanner();
+				scannerResult = inputScanner.nextLine();
+				System.out.println("");
+				String data = scannerResult;
 				//Scanning the Users.txt file...
 				if (search(data, "Users.txt") == false){
 					System.out.println("No Access"+"\n");
@@ -38,7 +44,9 @@ public class HWK4_crawleg{
 			//If Sign Up
 			if (n==2){
 				System.out.println("Choose your username:");
-				String data = scanner();
+				scannerResult = inputScanner.nextLine();
+				System.out.println("");
+				String data = scannerResult;
 				//If exists
 				if(search(data, "Users.txt")==true){
 					System.out.println("This name already exists, please choose another"+ "\n");
@@ -52,6 +60,7 @@ public class HWK4_crawleg{
 						bw.write(data);
 						bw.newLine();
 					    bw.flush();
+					    bw.close();
 						System.out.println("Username successfully added"+"\n");
 						continue;
 					}
@@ -72,28 +81,38 @@ public class HWK4_crawleg{
 				continue;
 			}
 		}
-		
-		
+		inputScanner.close();
 			
 	}
 	//Function to search file for string
 	public static boolean search(String s, String f) {
 		File file = new File(f);
 		try{
-			final Scanner scanner = new Scanner(file);	
-			while (scanner.hasNextLine()) {
-				   final String lineFromFile = scanner.nextLine();
+			System.out.println("8");
+			final Scanner fileScanner = new Scanner(file);	
+			System.out.println("9");
+			while (fileScanner.hasNextLine()) {
+					System.out.println("1");
+				   final String lineFromFile = fileScanner.nextLine();
+				   System.out.println("2");
 				   //Check for blank 
 				   if(s=="" || s=="\n"){
-					   scanner.close();
+					   System.out.println("3");
+					   fileScanner.close();
+					   System.out.println("4");
 					   return false;
 				   }
 				   if(lineFromFile.contains(s)) {
-					   scanner.close();
+					   System.out.println("5");
+					   fileScanner.close();
+					   System.out.println("6");
 				       return true;
 				   }
-				   scanner.close();
+				   else{
+					   continue;
+				   }
 				}
+			fileScanner.close();
 		}
 		
 		catch (FileNotFoundException e){
@@ -101,13 +120,6 @@ public class HWK4_crawleg{
 		}
 		
 		return false;
-	}
-	public static String scanner(){
-		Scanner scanner = new Scanner(System.in);
-		String scannerResult = scanner.nextLine();
-		System.out.println("");
-		scanner.close();
-		return scannerResult;
 	}
 }
 
