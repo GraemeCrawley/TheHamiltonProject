@@ -14,7 +14,7 @@ public class HWK4_crawleg {
 		Scanner inputScanner = new Scanner(System.in);
 		String scannerResult = "";
 		UserInterface s = new UserInterface();
-		User user = new User();
+		User u = new User();
 		s.changeCurrentPage(1);
 		while (n != 3417) {
 			try {
@@ -51,14 +51,15 @@ public class HWK4_crawleg {
 					}
 					// User name doesn't exist
 					else {
-						user.getUsername(data);
+						u.getUsername(data);
 						User.createUsername(data);
+						s.changeCurrentPage(1);
 					}
 				}
 				if(s.getCurrentPage()==3){
 					System.out.print("Enter your username: ");
 					scannerResult = inputScanner.nextLine();
-					System.out.println("");
+					System.out.println("");n
 					String data = scannerResult;
 					// Scanning the Users.txt file...
 					if (search(data, "Users.txt") == false) {
@@ -72,6 +73,50 @@ public class HWK4_crawleg {
 				}
 				if(s.getCurrentPage()==4){
 					System.out.println("No Access" + "\n");
+					s.changeCurrentPage(1);
+					continue;
+				}
+				if(s.getCurrentPage()==5){
+					System.out.println("1. View Items By Category ");
+					System.out.println("2. View Shopping Cart");
+					System.out.println("3. Sign Out");
+					System.out.print("Choose your option: ");
+					scannerResult = inputScanner.nextLine();
+					System.out.println("");
+					n = Integer.parseInt(scannerResult);
+					// If Sign In
+					if (n == 1) {
+						s.changeCurrentPage(6);
+						continue;
+					}
+					// If Sign Up
+					if (n == 2) {
+						s.changeCurrentPage(7);
+						continue;
+					}
+					if (n == 3) {
+						s.changeCurrentPage(1);
+						continue;
+					}
+					
+				}
+				if(s.getCurrentPage()==6){
+					s.changeCurrentPage(1);
+					continue;
+				}
+				if(s.getCurrentPage()==7){
+					s.changeCurrentPage(1);
+					continue;
+				}
+				if(s.getCurrentPage()==8){
+					s.changeCurrentPage(1);
+					continue;
+				}
+				if(s.getCurrentPage()==9){
+					s.changeCurrentPage(1);
+					continue;
+				}
+				if(s.getCurrentPage()==10){
 					s.changeCurrentPage(1);
 					continue;
 				}
