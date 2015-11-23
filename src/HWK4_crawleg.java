@@ -93,6 +93,9 @@ public class HWK4_crawleg {
 			} catch (java.util.InputMismatchException e) {
 				System.out.println("\n" + "Please only enter integers" + "\n");
 				continue;
+			} catch (java.lang.NumberFormatException e) {
+				System.out.println("\n" + "Please only enter integers" + "\n");
+				continue;
 			}
 		}
 		inputScanner.close();
@@ -103,24 +106,16 @@ public class HWK4_crawleg {
 	public static boolean search(String s, String f) {
 		File file = new File(f);
 		try {
-			System.out.println("8");
 			final Scanner fileScanner = new Scanner(file);
-			System.out.println("9");
 			while (fileScanner.hasNextLine()) {
-				System.out.println("1");
 				final String lineFromFile = fileScanner.nextLine();
-				System.out.println("2");
 				// Check for blank
 				if (s == "" || s == "\n") {
-					System.out.println("3");
 					fileScanner.close();
-					System.out.println("4");
 					return false;
 				}
 				if (lineFromFile.contains(s)) {
-					System.out.println("5");
 					fileScanner.close();
-					System.out.println("6");
 					return true;
 				} else {
 					continue;
