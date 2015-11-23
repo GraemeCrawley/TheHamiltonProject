@@ -104,7 +104,7 @@ public class HWK4_crawleg {
 					System.out.println("1. Readables");
 					System.out.println("2. Audio");
 					System.out.println("");
-					System.out.print("Choose your option: ");
+					System.out.println("Choose your option: ");
 					System.out.println("");
 					System.out.println("Press -1 to return to");
 					System.out.println("the previous menu");
