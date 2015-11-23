@@ -77,7 +77,7 @@ public class HWK4_crawleg {
 					continue;
 				}
 				if(s.getCurrentPage()==5){
-					System.out.println("1. View Items By Category ");
+					System.out.println("1. View Items By Category");
 					System.out.println("2. View Shopping Cart");
 					System.out.println("3. Sign Out");
 					System.out.print("Choose your option: ");
@@ -101,8 +101,30 @@ public class HWK4_crawleg {
 					
 				}
 				if(s.getCurrentPage()==6){
-					s.changeCurrentPage(1);
-					continue;
+					System.out.println("1. Readables");
+					System.out.println("2. Audio");
+					System.out.println("");
+					System.out.print("Choose your option: ");
+					System.out.println("");
+					System.out.println("Press -1 to return to");
+					System.out.println("the previous menu");
+					scannerResult = inputScanner.nextLine();
+					System.out.println("");
+					n = Integer.parseInt(scannerResult);
+					// If Sign In
+					if (n == 1) {
+						s.changeCurrentPage(8);
+						continue;
+					}
+					// If Sign Up
+					if (n == 2) {
+						s.changeCurrentPage(9);
+						continue;
+					}
+					if (n == -1) {
+						s.changeCurrentPage(5);
+						continue;
+					}
 				}
 				if(s.getCurrentPage()==7){
 					s.changeCurrentPage(1);
