@@ -59,7 +59,7 @@ public class HWK4_crawleg {
 				if(s.getCurrentPage()==3){
 					System.out.print("Enter your username: ");
 					scannerResult = inputScanner.nextLine();
-					System.out.println("");n
+					System.out.println("");
 					String data = scannerResult;
 					// Scanning the Users.txt file...
 					if (search(data, "Users.txt") == false) {
