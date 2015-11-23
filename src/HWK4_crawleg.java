@@ -6,6 +6,8 @@
  * Description:
  */
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class HWK4_crawleg {
@@ -182,5 +184,29 @@ public class HWK4_crawleg {
 		}
 
 		return false;
+	
+	//get books from Books.txt
+	String[] info = readLines("Books.txt"); //seperates lines into strings in an array
+	Book[] bookArray;		
+	for (int i = 0; i < info.length; i++){ 
+		String item = info[i]; 
+		String[] tempArray = item.split(",");
+		bookArray[i] = new Book(Integer.parseInt(tempArray[0]), tempArray[1], tempArray[2], Double.parseDouble(tempArray[3]), Integer.parseInt(tempArray[4]));
+			}
+	}
+
+
+	private static String[] readLines(String filename) throws IOException {
+		FileReader fileReader = new FileReader(filename);
+		BufferedReader bufferedReader = new BufferedReader(fileReader);
+		List<String> lines = new ArrayList<String>();
+		String line = null;
+		while ((line = bufferedReader.readLine()) != null){
+			lines.add(line);
+			}
+			bufferedReader.close();
+		String[] linesArray = new String[lines.size()];
+		linesArray = lines.toArray(linesArray);
+		return linesArray;
 	}
 }
