@@ -3,7 +3,7 @@
 	import java.io.FileNotFoundException;
 	import java.io.FileWriter;
 	import java.io.IOException;
-	import java.util.Scanner;
+
 
 	/*
 	 * Name: Gregory Smilski, Graeme Crawley, Alexandria Crump
@@ -17,9 +17,12 @@
 		private String username;
 		
 		public void getUsername(String s){ // stores the username
-			username = s;
+			this.username = s;
 		}
 		
+		public String returnUsername(){
+			return this.username;
+		}
 		public static void createUsername(String s)
 		{
 			try{
