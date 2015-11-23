@@ -14,6 +14,7 @@ public class HWK4_crawleg {
 		Scanner inputScanner = new Scanner(System.in);
 		String scannerResult = "";
 		UserInterface s = new UserInterface();
+		User user = new User();
 		s.changeCurrentPage(1);
 		while (n != 3417) {
 			try {
@@ -50,25 +51,9 @@ public class HWK4_crawleg {
 					}
 					// User name doesn't exist
 					else {
-						try {
-							// Write to file
-							BufferedWriter bw = new BufferedWriter(new FileWriter("Users.txt", true));
-							bw.write(data);
-							bw.newLine();
-							bw.flush();
-							bw.close();
-							System.out.println("Username successfully added" + "\n");
-							s.changeCurrentPage(1);
-							continue;
-						} catch (FileNotFoundException e) {
-							System.out.println("FileNotFoundException");
-							continue;
-						} catch (IOException e) {
-							System.out.println("IOException");
-							continue;
-						}
+						user.getUsername(data);
+						User.createUsername(data);
 					}
-					
 				}
 				if(s.getCurrentPage()==3){
 					System.out.print("Enter your username: ");
@@ -87,6 +72,7 @@ public class HWK4_crawleg {
 				}
 				if(s.getCurrentPage()==4){
 					System.out.println("No Access" + "\n");
+					s.changeCurrentPage(1);
 					continue;
 				}
 
