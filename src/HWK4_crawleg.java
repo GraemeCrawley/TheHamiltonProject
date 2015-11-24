@@ -56,7 +56,7 @@ public class HWK4_crawleg {
 						u.getUsername(data);
 						User.createUsername(data);
 						u.createCart(data, 0);
-						initCart(u.returnUsername());
+						UserInterface.initCart(u.returnUsername());
 						ShoppingCart.setContents(Contents);
 						r.changeCurrentPage(1);
 					}
@@ -73,7 +73,7 @@ public class HWK4_crawleg {
 					} else {
 						u.getUsername(data);
 						u.createCart(data, 1);
-						initCart(u.returnUsername());
+						UserInterface.initCart(u.returnUsername());
 						ShoppingCart.setContents(Contents);
 						r.changeCurrentPage(5);
 						continue;
@@ -194,15 +194,6 @@ public class HWK4_crawleg {
 
 	}
 	
-	public static void initCart(String u) throws IOException{
-		String[] info = UserInterface.readLines("cart_" + u + ".txt");
-		ShoppingCart[] cartArray = new ShoppingCart[info.length];		
-		for (int i = 0; i < info.length; i++){ 
-			String item = info[i]; 
-			String[] tempArray = item.split(",");
-			cartArray[i] = new ShoppingCart(tempArray[0], tempArray[1], tempArray[2], tempArray[3]);
-		}
-		Contents = cartArray;
-		}
+	
 
 }

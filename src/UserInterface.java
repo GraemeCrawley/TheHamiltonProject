@@ -11,7 +11,6 @@ import java.util.Scanner;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 public class UserInterface {
@@ -72,5 +71,16 @@ public class UserInterface {
 		String[] linesArray = new String[lines.size()];
 		linesArray = lines.toArray(linesArray);
 		return linesArray;
+		}
+	
+	public static void initCart(String u) throws IOException{
+		String[] info = UserInterface.readLines("Cart_" + u + ".txt");
+		ShoppingCart[] cartArray = new ShoppingCart[info.length];		
+		for (int i = 0; i < info.length; i++){ 
+			String item = info[i]; 
+			String[] tempArray = item.split(",");
+			cartArray[i] = new ShoppingCart(tempArray[0], tempArray[1], tempArray[2], tempArray[3]);
+		}
+		ShoppingCart.setContents(cartArray);
 		}
 }
