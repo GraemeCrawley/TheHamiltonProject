@@ -73,7 +73,7 @@ public class HWK4_crawleg {
 					} else {
 						u.getUsername(data);
 						u.createCart(data, 1);
-						UserInterface.initCart(u.returnUsername());
+
 						ShoppingCart.setContents(Contents);
 						r.changeCurrentPage(5);
 						continue;

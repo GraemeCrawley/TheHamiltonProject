@@ -19,7 +19,7 @@ public class ShoppingCart extends User{
 	private String Title;
 	private String Date;
 	private String Quantity;
-	private String 
+
 	private static ShoppingCart[] Contents;
 	
 	public ShoppingCart(String s, String t, String d, String q){
@@ -76,7 +76,7 @@ public class ShoppingCart extends User{
 		}
 		br.close();
 	}
-
+/*
 	
 	public void addItem(Item m, int n){
 		boolean s = true;
