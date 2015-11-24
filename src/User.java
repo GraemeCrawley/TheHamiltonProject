@@ -43,7 +43,7 @@ import java.io.FileNotFoundException;
 		}
 		public void createCart(String k, int t){
 			@SuppressWarnings("unused")
-			File file = new File("cart_" + k + ".txt");
+			File file = new File("Cart_" + k + ".txt");
 				
 			//Sign in
 			if (t==1){
