@@ -6,18 +6,18 @@
  * Description:
  */
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class HWK4_crawleg {
-	public static void main(String[] args) {
+	
+	public static ShoppingCart[] Contents;
+	
+	public static void main(String[] args) throws IOException {
 		int n = 0;
 		Scanner inputScanner = new Scanner(System.in);
 		String scannerResult = "";
 		UserInterface r = new UserInterface();
 		User u = new User();
-		ShoppingCart s = new ShoppingCart();
 		r.changeCurrentPage(1);
 		while (n != 3417) {
 			try {
@@ -56,7 +56,8 @@ public class HWK4_crawleg {
 					else {
 						u.getUsername(data);
 						User.createUsername(data);
-						s.createCart(data, 0);
+						initCart(u.returnUsername());
+						ShoppingCart.setContents(Contents);
 						r.changeCurrentPage(1);
 					}
 				}
@@ -71,7 +72,8 @@ public class HWK4_crawleg {
 						continue;
 					} else {
 						u.getUsername(data);
-						s.createCart(data, 1);
+						initCart(u.returnUsername());
+						ShoppingCart.setContents(Contents);
 						r.changeCurrentPage(5);
 						continue;
 					}
@@ -134,18 +136,8 @@ public class HWK4_crawleg {
 				if(r.getCurrentPage()==7){
 					System.out.println("Shopping Cart");
 					System.out.println("");
-					try {
-					    BufferedReader lineReader = new BufferedReader(new FileReader("cart_" + u.returnUsername() + ".txt"));
-					    String lineText = null;
-					 
-					    while ((lineText = lineReader.readLine()) != null) {
-					        System.out.println(lineText);
-					    }
-					 
-					    lineReader.close();
-					} catch (IOException ex) {
-					    System.err.println(ex);
-					}
+					
+					ShoppingCart.displayContents(u.returnUsername());
 					System.out.println("");
 					System.out.println("Press -1 to return to");
 					System.out.println("the previous menu");
@@ -185,8 +177,8 @@ public class HWK4_crawleg {
 
 	//Initialize all books
 	public static Book[] initBook(String text) throws IOException{
-		//get books from Bookr.txt
-		String[] info = readLines(text); //seperates lines into strings in an array
+		//get books from Books.txt
+		String[] info = UserInterface.readLines(text); //seperates lines into strings in an array
 		Book[] bookArray = new Book[info.length];		
 		for (int i = 0; i < info.length; i++){ 
 			String item = info[i]; 
@@ -196,19 +188,15 @@ public class HWK4_crawleg {
 		return bookArray;
 		}
 	
-
-
-	public static String[] readLines(String filename) throws IOException {
-		FileReader fileReader = new FileReader(filename);
-		BufferedReader bufferedReader = new BufferedReader(fileReader);
-		List<String> lines = new ArrayList<String>();
-		String line = null;
-		while ((line = bufferedReader.readLine()) != null){
-			lines.add(line);
-			}
-		bufferedReader.close();
-		String[] linesArray = new String[lines.size()];
-		linesArray = lines.toArray(linesArray);
-		return linesArray;
+	public static void initCart(String u) throws IOException{
+		String[] info = UserInterface.readLines("cart_" + u + ".txt");
+		ShoppingCart[] cartArray = new ShoppingCart[info.length];		
+		for (int i = 0; i < info.length; i++){ 
+			String item = info[i]; 
+			String[] tempArray = item.split(",");
+			cartArray[i] = new ShoppingCart(tempArray[0], tempArray[1], tempArray[2], tempArray[3]);
 		}
+		Contents = cartArray;
+		}
+
 }

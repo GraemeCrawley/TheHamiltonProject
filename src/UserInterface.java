@@ -4,11 +4,16 @@
  * Student Number: 1404091,  1417993, 1310858
  * Description:
  */
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.lang.reflect.Array;
 import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.List;
 public class UserInterface {
 	@SuppressWarnings("unused")
 	private Array readables;
@@ -55,4 +60,17 @@ public class UserInterface {
 		}
 		return false;
 	}
+	public static String[] readLines(String filename) throws IOException{
+		FileReader fileReader = new FileReader(filename);
+		BufferedReader bufferedReader = new BufferedReader(fileReader);
+		List<String> lines = new ArrayList<String>();
+		String line = null;
+		while ((line = bufferedReader.readLine()) != null){
+			lines.add(line);
+			}
+		bufferedReader.close();
+		String[] linesArray = new String[lines.size()];
+		linesArray = lines.toArray(linesArray);
+		return linesArray;
+		}
 }
