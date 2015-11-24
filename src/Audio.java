@@ -1,3 +1,4 @@
+
 /*
  * Name: Gregory Smilski, Graeme Crawley, Alexandria Crump
  * MacID: smilsksi, crawleg, crumpal
@@ -7,9 +8,17 @@
 
 public class Audio extends Item{
 	
+	public Audio(int sNo, String name, String artistName, double price, int quantity) { //constructor
+		super(sNo, name, artistName, price, quantity);
+		this.price = (int) Math.round(price);
+		this.sNo = sNo;
+		this.artistName = artistName;
+		this.name = name;
+	}
+	protected String name;
 	protected String artistName;
 	public String getInfo(){
-		String info =null;
+		String info =String.format("%4d%16s%16s%5d%4d", sNo, name, artistName, price);
 		return info;
 	}
 	@Override

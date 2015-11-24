@@ -7,10 +7,16 @@
  */
 
 public class MP3 extends Audio{
-	public MP3(int sNo, String name, String artist, double price, int quantity) { // constructors of the MP3s
-		// TODO Auto-generated constructor stub
+	
+	public MP3(int sNo, String name, String artistName, double price, int quantity) { //constructors of the CDs
+		super(sNo, name, artistName, price, quantity);
+		this.price = (int) Math.round(price);
+		this.sNo = sNo;
+		this.artistName = artistName;
+		this.name = name;
+		this.quantity = quantity;
 	}
-
+	protected int quantity;
 	@Override
 	public int getPrice(){
 		return price;

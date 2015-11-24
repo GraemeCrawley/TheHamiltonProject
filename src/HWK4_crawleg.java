@@ -133,6 +133,7 @@ public class HWK4_crawleg {
 					continue;
 				}
 				if(s.getCurrentPage()==8){
+					s.showReadables();
 					s.changeCurrentPage(1);
 					continue;
 				}

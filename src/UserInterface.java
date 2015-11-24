@@ -23,24 +23,32 @@ public class UserInterface {
 	public void changeCurrentPage(int n){// This method is for page navigation. It should change to current page and show the content.
 		currentPage = n;
 	}
+	private String[] bookInfo;
+	private Book[] bookArray;
+	private String[] eBookInfo;
+	private eBook[] eBookArray;
 	public void getReadables() throws IOException {// Fetches all readable from the files and places them in the readable array
 		//get books from Books.txt		
-		String[] bookInfo = readLines("Books.txt"); //seperates lines into strings in an array
-		Book[] bookArray = new Book[bookInfo.length];		
+		bookInfo = readLines("Books.txt"); //seperates lines into strings in an array
+		bookArray = new Book[bookInfo.length];
 		for (int i = 0; i < bookInfo.length; i++){ 
 			String item = bookInfo[i]; 
 			String[] tempArray = item.split(",");
 			bookArray[i] = new Book(Integer.parseInt(tempArray[0]), tempArray[1], tempArray[2], Double.parseDouble(tempArray[3]), Integer.parseInt(tempArray[4]));
 		}
 		//get eBooks from eBook.txt
-		String[] eBookInfo = readLines("eBooks.txt");
-		eBook[] eBookArray = new eBook[eBookInfo.length];
+		eBookInfo = readLines("Ebooks.txt");
+		eBookArray = new eBook[eBookInfo.length];
 		for (int j = 0; j< eBookInfo.length; j++){
 			String item = eBookInfo[j];
 			String[] tempArray = item.split(",");
 			eBookArray[j] = new eBook(Integer.parseInt(tempArray[0]), tempArray[1], tempArray[2], Double.parseDouble(tempArray[3]), Integer.parseInt(tempArray[4]));
 		}		
 	}
+	private String[] CDInfo;
+	private CD[] CDArray;
+	private String[] MP3Info;
+	private MP3[] MP3Array;
 	public void getAudioProducts() throws IOException{ // Fetches all audio products from the files and places in them in the readables array
 		//get CDs from CDs.txt
 		String[] CDInfo = readLines("CD.txt"); //seperates lines into strings in an array
@@ -60,10 +68,31 @@ public class UserInterface {
 		}	
 	}
 	public void showReadables(){ //Displays all readable for browsing
+		System.out.println(String.format("%-4s%-16s%-16s%-5s%-8s%-6s","sNo","Name","Author", "Price", "Quantity", "Type"));
+		for (int i = 0; i<this.bookArray.length; i++){
+			Book book = bookArray[i];
+			String type = "book";
+			System.out.println(String.format("%4d%16s%16s%5d%4d%6s", book.sNo, book.name, book.authorName, book.price, type));
+		}
+		for (int i = 0; i<this.eBookArray.length; i++){
+			eBook book = eBookArray[i];
+			String type = "eBook";
+			System.out.println(String.format("%4d%16s%16s%5d%4d%6s", book.sNo, book.name, book.authorName, book.price, type));
+		}
 	}
 	public void showAudioProducts(){ // Displays all audio products for browsing
+		System.out.println(String.format("%4d%16s%16s%5d%4d%6s","sNo","Name","Artist", "Price", "Type"));
+		for (int i = 0; i<this.CDArray.length; i++){
+			CD cd = CDArray[i];
+			String type = "CD";
+			System.out.println(String.format("%4d%16s%16s%5d%4d%6s", cd.sNo, cd.name, cd.artistName, cd.price, type));
+		}
+		for (int i = 0; i<this.eBookArray.length; i++){
+			eBook book = eBookArray[i];
+			String type = "eBook";
+			System.out.println(String.format("%4d%16s%16s%5d%4d%6s", book.sNo, book.name, book.authorName, book.price, type));
+		}
 	}
-	//Initialize all books
 
 	private static String[] readLines(String filename) throws IOException {
 		FileReader fileReader = new FileReader(filename);
