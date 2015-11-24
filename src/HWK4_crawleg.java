@@ -106,8 +106,8 @@ public class HWK4_crawleg {
 					System.out.println("1. Readables");
 					System.out.println("2. Audio");
 					System.out.println("");
-					System.out.println("Choose your option: ");
 					System.out.println("");
+					System.out.println("Choose your option: ");
 					System.out.println("Press -1 to return to");
 					System.out.println("the previous menu");
 					scannerResult = inputScanner.nextLine();
@@ -128,18 +128,36 @@ public class HWK4_crawleg {
 						continue;
 					}
 				}
+				//Show Shopping Cart
+				//Greg is doing this
 				if(s.getCurrentPage()==7){
 					s.changeCurrentPage(1);
 					continue;
 				}
+				//Readables
 				if(s.getCurrentPage()==8){
 					s.changeCurrentPage(1);
 					continue;
 				}
+				//Audio
 				if(s.getCurrentPage()==9){
-					s.changeCurrentPage(1);
+					int selection = 0;
+					int quantity = 0;
+					System.out.println("Audio");
+					System.out.println("");
+					System.out.format("%-6s%-20s%-10s%-10s%-20s%-5s", "S.No.", "Name", "Author", "Price($)", "Quantity in Store", "Type");
+					System.out.println();
+					s.showAudioProducts();
+					System.out.print("Choose your option: ");
+					scannerResult = inputScanner.nextLine();
+					selection = Integer.parseInt(scannerResult);
+					System.out.print("Enter quantity: ");
+					scannerResult = inputScanner.nextLine();
+					quantity = Integer.parseInt(scannerResult);
+					s.changeCurrentPage(9);
 					continue;
 				}
+				//Checkout
 				if(s.getCurrentPage()==10){
 					s.changeCurrentPage(1);
 					continue;
@@ -180,14 +198,14 @@ public class HWK4_crawleg {
 		}
 
 		catch (FileNotFoundException e) {
-
+			System.out.println("User file not found");
 		}
 		return false;
 	}
 	//Initialize all books
 	public static Book[] initBook(String text) throws IOException{
 		//get books from Books.txt
-		String[] info = readLines(text); //seperates lines into strings in an array
+		String[] info = readLines(text); //separates lines into strings in an array
 		Book[] bookArray = new Book[info.length];		
 		for (int i = 0; i < info.length; i++){ 
 			String item = info[i]; 
@@ -195,7 +213,7 @@ public class HWK4_crawleg {
 			bookArray[i] = new Book(Integer.parseInt(tempArray[0]), tempArray[1], tempArray[2], Double.parseDouble(tempArray[3]), Integer.parseInt(tempArray[4]));
 				}
 		return bookArray;
-		}
+	}
 	
 
 
@@ -211,5 +229,5 @@ public class HWK4_crawleg {
 		String[] linesArray = new String[lines.size()];
 		linesArray = lines.toArray(linesArray);
 		return linesArray;
-		}
+	}
 }

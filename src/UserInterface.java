@@ -20,10 +20,13 @@ public class UserInterface {
 	}
 	public void getReadables() {// Fetches all readable from the files and places them in the readable array
 	}
-	public void getAudioProducts(){ // Fetches all audio products from the files and places in them in the readables array
+	public void getAudioProducts(){// Fetches all audio products from the files and places in them in the readables array
 	}
-	public void showReadables(){ //Displays all readable for browsing
+	public void showReadables(){//Displays all readable for browsing
+		
 	}
 	public void showAudioProducts(){ // Displays all audio products for browsing
+		System.out.format("%-6s%-20s%-10s%-10s%-20s%-5s", "10", "FTHD", "REF", "10", "5", "MP3");
+		System.out.println("");
 	}
 }

@@ -3,7 +3,6 @@
 	import java.io.FileNotFoundException;
 	import java.io.FileWriter;
 	import java.io.IOException;
-	import java.util.Scanner;
 
 	/*
 	 * Name: Gregory Smilski, Graeme Crawley, Alexandria Crump
@@ -14,6 +13,7 @@
 
 	public class User {
 
+		@SuppressWarnings("unused")
 		private String username;
 		
 		public void getUsername(String s){ // stores the username
@@ -41,7 +41,7 @@
 				File file = new File("cart_" + s + ".txt");
 				
 				if (!file.createNewFile()){
-					System.out.println("FileAlreadyExiss");
+					System.out.println("File Already Exists");
 				}
 				
 				}catch (IOException e) {
