@@ -43,7 +43,7 @@ public class User {
 	public void createCart(String k, int t){
 		
 		try {
-			File file = new File("cart_" + k + ".txt");
+			File file = new File("Cart_" + k + ".txt");
 			
 			if (!file.createNewFile()){
 				System.out.print("");
