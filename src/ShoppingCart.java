@@ -1,4 +1,4 @@
-import java.io.IOException;
+import java.io.File;
 
 /*
  * Name: Gregory Smilski, Graeme Crawley, Alexandria Crump
@@ -14,8 +14,17 @@ public class ShoppingCart extends User{
 	private String Title;
 	private String Date;
 	private String Quantity;
-	private ShoppingCart[] Contents;
 	
+	
+	public void createCart(String k, int t){
+		@SuppressWarnings("unused")
+		File file = new File("cart_" + k + ".txt");
+			
+		//Sign in
+		if (t==1){
+			System.out.println("Welcome " + k + "\n");
+		}	
+	}
 	
 	
 	public ShoppingCart(String s, String t, String d, String q){
@@ -31,9 +40,8 @@ public class ShoppingCart extends User{
 		for (int i = 0; i < info.length; i++){ 
 			String item = info[i]; 
 			String[] tempArray = item.split(",");
-			cartArray[i] = new ShoppingCart(tempArray[0], tempArray[1], tempArray[2], tempArray[3]);
+			//cartArray[i] = new ShoppingCart(tempArray[0], tempArray[1], tempArray[2], tempArray[3]);
 				}
-		Contents = cartArray;
 		
 	}
 	
@@ -45,7 +53,9 @@ public class ShoppingCart extends User{
 		return l;
 	}
 	
-	public ShoppingCart[] setContents()
+	public ShoppingCart[] setContents(){
+		return null;
+	}
 }
 	
 
