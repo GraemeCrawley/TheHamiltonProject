@@ -1,4 +1,3 @@
-
 /*
  * Name: Gregory Smilski, Graeme Crawley, Alexandria Crump
  * MacID: smilsksi, crawleg, crumpal
@@ -138,7 +137,6 @@ public class HWK4_crawleg {
 				if(r.getCurrentPage()==7){
 					System.out.println("Shopping Cart");
 					System.out.println("");
-					
 					ShoppingCart.displayContents(u.returnUsername());
 					System.out.println("");
 					System.out.println("Press -1 to return to");
@@ -151,7 +149,28 @@ public class HWK4_crawleg {
 						continue;
 					}
 				}
+
 				if(r.getCurrentPage()==8){
+					System.out.println("Readables");
+					System.out.println("");
+					System.out.println("");
+					System.out.println("Choose your option: ");
+					System.out.println("");
+					System.out.println("Press -1 to return to");
+					System.out.println("the previous menu");
+					scannerResult = inputScanner.nextLine();
+					System.out.println("");
+					n = Integer.parseInt(scannerResult);
+					// If Sign In
+					if (n == 1) {
+						r.changeCurrentPage(8);
+						continue;
+					}
+					//Assume they've chosen an item
+					else{
+						//check to make sure the number they've entered is valid for the selected type ie audio/readable
+						//
+					}
 					r.changeCurrentPage(1);
 					continue;
 				}
@@ -175,21 +194,4 @@ public class HWK4_crawleg {
 		inputScanner.close();
 
 	}
-
-
-	//Initialize all books
-	public static Book[] initBook(String text) throws IOException{
-		//get books from Books.txt
-		String[] info = UserInterface.readLines(text); //seperates lines into strings in an array
-		Book[] bookArray = new Book[info.length];		
-		for (int i = 0; i < info.length; i++){ 
-			String item = info[i]; 
-			String[] tempArray = item.split(",");
-			bookArray[i] = new Book(Integer.parseInt(tempArray[0]), tempArray[1], tempArray[2], Double.parseDouble(tempArray[3]), Integer.parseInt(tempArray[4]));
-				}
-		return bookArray;
-		}
-	
-	
-
 }
