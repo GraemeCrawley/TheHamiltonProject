@@ -9,6 +9,13 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.lang.reflect.Array;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.lang.reflect.Array;
+import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 public class UserInterface {
@@ -93,8 +100,33 @@ public class UserInterface {
 			System.out.println(String.format("%4d%16s%16s%5d%4d%6s", book.sNo, book.name, book.authorName, book.price, type));
 		}
 	}
+	public boolean search(String s, String f) {
+		File file = new File(f);
+		try {
+			final Scanner fileScanner = new Scanner(file);
+			while (fileScanner.hasNextLine()) {
+				final String lineFromFile = fileScanner.nextLine();
+				// Check for blank
+				if (s == "" || s == "\n") {
+					fileScanner.close();
+					return false;
+				}
+				if (lineFromFile.contains(s)) {
+					fileScanner.close();
+					return true;
+				} else {
+					continue;
+				}
+			}
+			fileScanner.close();
+		}
 
-	private static String[] readLines(String filename) throws IOException {
+		catch (FileNotFoundException e) {
+
+		}
+		return false;
+	}
+	public static String[] readLines(String filename) throws IOException{
 		FileReader fileReader = new FileReader(filename);
 		BufferedReader bufferedReader = new BufferedReader(fileReader);
 		List<String> lines = new ArrayList<String>();
@@ -106,5 +138,16 @@ public class UserInterface {
 		String[] linesArray = new String[lines.size()];
 		linesArray = lines.toArray(linesArray);
 		return linesArray;
+		}
+	
+	public static void initCart(String u) throws IOException{
+		String[] info = UserInterface.readLines("Cart_" + u + ".txt");
+		ShoppingCart[] cartArray = new ShoppingCart[info.length];		
+		for (int i = 0; i < info.length; i++){ 
+			String item = info[i]; 
+			String[] tempArray = item.split(",");
+			cartArray[i] = new ShoppingCart(tempArray[0], tempArray[1], tempArray[2], tempArray[3]);
+		}
+		ShoppingCart.setContents(cartArray);
 		}
 }
