@@ -7,9 +7,18 @@
  */
 
 public class MP3 extends Audio{
+	
+	public MP3(int sNo, String name, String artistName, double price, int quantity) { //constructors of the CDs
+		super(sNo, name, artistName, price, quantity);
+		this.price = (int) Math.round(price);
+		this.sNo = sNo;
+		this.artistName = artistName;
+		this.name = name;
+		this.quantity = quantity;
+	}
+	protected int quantity;
 	@Override
 	public int getPrice(){
-		int m = 18;
-		return m;
+		return price;
 	}
 }

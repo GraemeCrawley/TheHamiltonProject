@@ -149,6 +149,7 @@ public class HWK4_crawleg {
 						continue;
 					}
 				}
+
 				if(r.getCurrentPage()==8){
 					System.out.println("Readables");
 					System.out.println("");
@@ -193,7 +194,4 @@ public class HWK4_crawleg {
 		inputScanner.close();
 
 	}
-	
-	
-
 }
