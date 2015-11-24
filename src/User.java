@@ -1,5 +1,6 @@
 	import java.io.BufferedWriter;
-	import java.io.FileNotFoundException;
+import java.io.File;
+import java.io.FileNotFoundException;
 	import java.io.FileWriter;
 	import java.io.IOException;
 
@@ -40,6 +41,16 @@
 				System.out.println("IOException");
 			}
 		}
+		public void createCart(String k, int t){
+			@SuppressWarnings("unused")
+			File file = new File("cart_" + k + ".txt");
+				
+			//Sign in
+			if (t==1){
+				System.out.println("Welcome " + k + "\n");
+			}	
+		}
+		
 	}
 
 

@@ -56,6 +56,7 @@ public class HWK4_crawleg {
 					else {
 						u.getUsername(data);
 						User.createUsername(data);
+						u.createCart(data, 0);
 						initCart(u.returnUsername());
 						ShoppingCart.setContents(Contents);
 						r.changeCurrentPage(1);
@@ -72,6 +73,7 @@ public class HWK4_crawleg {
 						continue;
 					} else {
 						u.getUsername(data);
+						u.createCart(data, 1);
 						initCart(u.returnUsername());
 						ShoppingCart.setContents(Contents);
 						r.changeCurrentPage(5);

@@ -20,17 +20,6 @@ public class ShoppingCart extends User{
 	private String Quantity;	
 	private static ShoppingCart[] Contents;
 	
-	public void createCart(String k, int t){
-		@SuppressWarnings("unused")
-		File file = new File("cart_" + k + ".txt");
-			
-		//Sign in
-		if (t==1){
-			System.out.println("Welcome " + k + "\n");
-		}	
-	}
-	
-	
 	public ShoppingCart(String s, String t, String d, String q){
 		serialNo = s;
 		Title = t;
