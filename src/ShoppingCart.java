@@ -1,3 +1,6 @@
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 
 /*
@@ -14,7 +17,7 @@ public class ShoppingCart extends User{
 	private String Title;
 	private String Date;
 	private String Quantity;
-	private ShoppingCart[] Contents;
+	private static ShoppingCart[] Contents;
 	
 	
 	
@@ -24,29 +27,36 @@ public class ShoppingCart extends User{
 		Date = d;
 		Quantity = q;
 	}
-	
-	public void initCart(String u) throws IOException{
-		String[] info = HWK4_crawleg.readLines("cart_" + u + ".txt");
-		ShoppingCart[] cartArray = new ShoppingCart[info.length];		
-		for (int i = 0; i < info.length; i++){ 
-			String item = info[i]; 
-			String[] tempArray = item.split(",");
-			cartArray[i] = new ShoppingCart(tempArray[0], tempArray[1], tempArray[2], tempArray[3]);
-				}
-		Contents = cartArray;
-		
-	}
-	
+	/*
 	public String getContent(ShoppingCart[] s){
-		String l = null;
+		String 
 		for(int i = 0; i < s.length; i++){
-			l =  serialNo + ", " + Title + ", " + Date + ", " + Quantity + '\n';
 		}
-		return l;
+	}
+	*/	
+	
+	public static void setContents(ShoppingCart[] s){
+		Contents = s;
 	}
 	
-	public ShoppingCart[] setContents()
+	public static void displayContents(String s) throws IOException {
+		BufferedReader br = new BufferedReader(new FileReader("Cart_" + s + ".txt"));
+		String line;
+		while((line = br.readLine()) != null) {
+			System.out.println(line);
+		}
+		br.close();
+	}
 }
 	
+	/*
+	public addItem(Item m, int n){
+		ShoppingCart[] tempCart = new ShoppingCart[Contents.length + 1];
+		for(int i = 0; i < Contents.length; i++){
+			
+		}
+	}
+}
+	*/
 
 

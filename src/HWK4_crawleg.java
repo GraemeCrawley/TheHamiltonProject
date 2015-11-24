@@ -11,13 +11,15 @@ import java.util.List;
 import java.util.Scanner;
 
 public class HWK4_crawleg {
-	public static void main(String[] args) {
+	
+	public static ShoppingCart[] Contents;
+	
+	public static void main(String[] args) throws IOException {
 		int n = 0;
 		Scanner inputScanner = new Scanner(System.in);
 		String scannerResult = "";
 		UserInterface s = new UserInterface();
 		User u = new User();
-		ShoppingCart[] c;
 		s.changeCurrentPage(1);
 		while (n != 3417) {
 			try {
@@ -56,7 +58,8 @@ public class HWK4_crawleg {
 					else {
 						u.getUsername(data);
 						User.createUsername(data);
-						ShoppingCart[] c = c.initCart(u.returnUsername());
+						initCart(u.returnUsername());
+						ShoppingCart.setContents(Contents);
 						s.changeCurrentPage(1);
 					}
 				}
@@ -72,6 +75,8 @@ public class HWK4_crawleg {
 					} else {
 						System.out.println("Welcome " + data + "\n");
 						u.getUsername(data);
+						initCart(u.returnUsername());
+						ShoppingCart.setContents(Contents);
 						s.changeCurrentPage(5);
 						continue;
 					}
@@ -135,7 +140,7 @@ public class HWK4_crawleg {
 					System.out.println("Shopping Cart");
 					System.out.println("");
 					
-					ShoppingCart.getContent(c);
+					ShoppingCart.displayContents(u.returnUsername());
 					System.out.println("");
 					System.out.println("Press -1 to return to");
 					System.out.println("the previous menu");
@@ -202,7 +207,7 @@ public class HWK4_crawleg {
 	//Initialize all books
 	public static Book[] initBook(String text) throws IOException{
 		//get books from Books.txt
-		String[] info = readLines(text); //seperates lines into strings in an array
+		String[] info = UserInterface.readLines(text); //seperates lines into strings in an array
 		Book[] bookArray = new Book[info.length];		
 		for (int i = 0; i < info.length; i++){ 
 			String item = info[i]; 
@@ -212,19 +217,15 @@ public class HWK4_crawleg {
 		return bookArray;
 		}
 	
-
-
-	public static String[] readLines(String filename) throws IOException {
-		FileReader fileReader = new FileReader(filename);
-		BufferedReader bufferedReader = new BufferedReader(fileReader);
-		List<String> lines = new ArrayList<String>();
-		String line = null;
-		while ((line = bufferedReader.readLine()) != null){
-			lines.add(line);
-			}
-		bufferedReader.close();
-		String[] linesArray = new String[lines.size()];
-		linesArray = lines.toArray(linesArray);
-		return linesArray;
+	public static void initCart(String u) throws IOException{
+		String[] info = UserInterface.readLines("cart_" + u + ".txt");
+		ShoppingCart[] cartArray = new ShoppingCart[info.length];		
+		for (int i = 0; i < info.length; i++){ 
+			String item = info[i]; 
+			String[] tempArray = item.split(",");
+			cartArray[i] = new ShoppingCart(tempArray[0], tempArray[1], tempArray[2], tempArray[3]);
 		}
+		Contents = cartArray;
+		}
+
 }
