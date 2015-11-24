@@ -7,18 +7,9 @@
  */
 
 public class Book extends Readable {
-	private int sNo = 0;
-	private String name = null;
-	private String author = null;
-	private double price = 0;
-	private int quantity = 0;
 		
-	public Book(int parseInt, String name2, String author2, double parseDouble, int parseInt2) {
-		sNo = parseInt;
-		name = name2;
-		author = author2;
-		price = parseDouble;
-		quantity = parseInt2;
+	public Book(int sNo, String name, String author, double price, int quantity) {
+
 	}
 
 	@Override

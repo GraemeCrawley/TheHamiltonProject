@@ -6,10 +6,11 @@
  */
 
 public class Audio extends Item{
+	
 	protected String artistName;
 	public String getInfo(){
-		String s = "hello";
-		return s;
+		String info =null;
+		return info;
 	}
 	@Override
 	public int getPrice(){

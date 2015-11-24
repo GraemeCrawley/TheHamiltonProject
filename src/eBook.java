@@ -7,9 +7,12 @@
  */
 
 public class eBook extends Readable{
+	public eBook(int sNo, String name, String author, double price, int quantity) { // constructors of the eBooks
+		
+	}
+
 	@Override
 	public int getPrice(){ // override and only call the parent’s constructor to get the base price.
-		int p = 9;
-		return p;
+		return price;
 	}
 }

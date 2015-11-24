@@ -7,9 +7,12 @@
  */
 
 public class MP3 extends Audio{
+	public MP3(int sNo, String name, String artist, double price, int quantity) { // constructors of the MP3s
+		// TODO Auto-generated constructor stub
+	}
+
 	@Override
 	public int getPrice(){
-		int m = 18;
-		return m;
+		return price;
 	}
 }
