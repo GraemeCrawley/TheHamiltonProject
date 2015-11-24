@@ -17,6 +17,7 @@ public class HWK4_crawleg {
 		String scannerResult = "";
 		UserInterface s = new UserInterface();
 		User u = new User();
+		ShoppingCart[] c;
 		s.changeCurrentPage(1);
 		while (n != 3417) {
 			try {
@@ -55,6 +56,7 @@ public class HWK4_crawleg {
 					else {
 						u.getUsername(data);
 						User.createUsername(data);
+						ShoppingCart[] c = c.initCart(u.returnUsername());
 						s.changeCurrentPage(1);
 					}
 				}
@@ -69,6 +71,7 @@ public class HWK4_crawleg {
 						continue;
 					} else {
 						System.out.println("Welcome " + data + "\n");
+						u.getUsername(data);
 						s.changeCurrentPage(5);
 						continue;
 					}
@@ -129,8 +132,20 @@ public class HWK4_crawleg {
 					}
 				}
 				if(s.getCurrentPage()==7){
-					s.changeCurrentPage(1);
-					continue;
+					System.out.println("Shopping Cart");
+					System.out.println("");
+					
+					ShoppingCart.getContent(c);
+					System.out.println("");
+					System.out.println("Press -1 to return to");
+					System.out.println("the previous menu");
+					scannerResult = inputScanner.nextLine();
+					System.out.println("");
+					n = Integer.parseInt(scannerResult);
+					if (n == -1) {
+						s.changeCurrentPage(5);
+						continue;
+					}
 				}
 				if(s.getCurrentPage()==8){
 					s.changeCurrentPage(1);
@@ -199,7 +214,7 @@ public class HWK4_crawleg {
 	
 
 
-	private static String[] readLines(String filename) throws IOException {
+	public static String[] readLines(String filename) throws IOException {
 		FileReader fileReader = new FileReader(filename);
 		BufferedReader bufferedReader = new BufferedReader(fileReader);
 		List<String> lines = new ArrayList<String>();
