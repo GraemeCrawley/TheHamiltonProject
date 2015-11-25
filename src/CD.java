@@ -29,5 +29,12 @@ public class CD extends Audio {
 	}
 	public boolean getTax(){
 		return tax;
+/*
+		double tax = 0.1;
+		double newPrice = price*(tax+1);
+		Long L = Math.round(newPrice);
+		int finalPrice = Integer.valueOf(L.intValue());
+		return finalPrice;
+*/
 	}
 }

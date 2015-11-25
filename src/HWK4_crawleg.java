@@ -1,3 +1,4 @@
+
 /*
  * Name: Gregory Smilski, Graeme Crawley, Alexandria Crump
  * MacID: smilsksi, crawleg, crumpal
@@ -8,9 +9,6 @@ import java.io.*;
 import java.util.Scanner;
 
 public class HWK4_crawleg {
-	
-	public static ShoppingCart[] Contents;
-	
 	public static void main(String[] args) throws IOException {
 		int n = 0;
 		Scanner inputScanner = new Scanner(System.in);
@@ -18,8 +16,8 @@ public class HWK4_crawleg {
 		UserInterface r = new UserInterface();
 		User u = new User();
 		r.changeCurrentPage(1);
-		r.getReadables();
-		r.getAudioProducts();
+		//r.getReadables();
+		//r.getAudioProducts();
 		while (n != 3417) {
 			try {
 				//Login Page
@@ -49,7 +47,7 @@ public class HWK4_crawleg {
 					System.out.println("");
 					String data = scannerResult;
 					// If exists
-					if (r.search(data, "Users.txt") == true) {
+					if (search(data, "Users.txt") == true) {
 						System.out.println("This name already exists, please choose another" + "\n");
 						continue;
 					}
@@ -59,7 +57,7 @@ public class HWK4_crawleg {
 						User.createUsername(data);
 						u.createCart(data, 0);
 						UserInterface.initCart(data);
-						ShoppingCart.setContents(Contents);
+						//ShoppingCart.setContents(Contents);
 						r.changeCurrentPage(1);
 					}
 				}
@@ -69,14 +67,15 @@ public class HWK4_crawleg {
 					System.out.println("");
 					String data = scannerResult;
 					// Scanning the Userr.txt file...
-					if (r.search(data, "Users.txt") == false) {
+					if (search(data, "Users.txt") == false) {
 						r.changeCurrentPage(4);
 						continue;
 					} else {
 						u.getUsername(data);
 						u.createCart(data, 1);
 						UserInterface.initCart(data);
-						ShoppingCart.setContents(Contents);
+						//ShoppingCart.setContents(Contents);
+						System.out.println("Welcome " + data + "\n");
 						r.changeCurrentPage(5);
 						continue;
 					}
@@ -121,12 +120,10 @@ public class HWK4_crawleg {
 					scannerResult = inputScanner.nextLine();
 					System.out.println("");
 					n = Integer.parseInt(scannerResult);
-					// If Sign In
 					if (n == 1) {
 						r.changeCurrentPage(8);
 						continue;
 					}
-					// If Sign Up
 					if (n == 2) {
 						r.changeCurrentPage(9);
 						continue;
@@ -154,12 +151,15 @@ public class HWK4_crawleg {
 				//Readables
 				if(r.getCurrentPage()==8){
 					System.out.println("Readables");
+					//System.out.println("TEST");
 					System.out.println("");
+					//System.out.println("showReadables - HWK4");
 					r.showReadables();
 					System.out.println("Choose option");
 					System.out.println("Press -1 to return to");
 					System.out.println("the previous menu");
 					scannerResult = inputScanner.nextLine();
+					System.out.println("n=scanner");
 					n = Integer.parseInt(scannerResult);
 					if(n==-1){
 						r.changeCurrentPage(6);
@@ -173,7 +173,7 @@ public class HWK4_crawleg {
 						String titleType = "Book"; //replace with real type
 						System.out.print("Enter quantity: ");
 						scannerResult = inputScanner.nextLine();
-						quantity = Integer.parseInt(scannerResult); 
+						quantity = Integer.parseInt(scannerResult);  //change to be specific for the selected item
 //						selectedItem = "random book"; //change to be specific for the selected item
 						if(quantity == 1){
 							System.out.println(quantity+" "+title+" "+titleType+" added to your cart.");
@@ -196,14 +196,54 @@ public class HWK4_crawleg {
 				}
 				//Audio
 				if(r.getCurrentPage()==9){
-					r.changeCurrentPage(1);
+					System.out.println("Audio");
+					//System.out.println("TEST");
+					System.out.println("");
+					//System.out.println("showReadables - HWK4");
+					r.showAudioProducts();
+					System.out.println("Choose option");
+					System.out.println("Press -1 to return to");
+					System.out.println("the previous menu");
+					scannerResult = inputScanner.nextLine();
+					System.out.println("n=scanner");
+					n = Integer.parseInt(scannerResult);
+					if(n==-1){
+						r.changeCurrentPage(6);
+					}
+					//Assume they've chosen an item
+					else{
+						//check to make sure the number they've entered is valid for the selected type i.e. audio/readable
+						//ask for a quantity
+						int quantity = 0;
+						String title = "harry potter"; //replace with real title
+						String titleType = "MP3"; //replace with real type
+						System.out.print("Enter quantity: ");
+						scannerResult = inputScanner.nextLine();
+						quantity = Integer.parseInt(scannerResult);  //change to be specific for the selected item
+						if(quantity == 1){
+							System.out.println(quantity+" "+title+" "+titleType+" added to your cart.");
+						}
+						else{
+							System.out.println(quantity+" "+title+" "+titleType+"s added to your cart.");
+						}
+						System.out.println("Press -2 to Continue Shopping or Press 0 to CheckOut");
+						scannerResult = inputScanner.nextLine();
+						n = Integer.parseInt(scannerResult);
+						if(n==0){
+							r.changeCurrentPage(10);
+						}
+						else if(n==-2){
+							r.changeCurrentPage(6);
+						}
+						
+					}
 					continue;
 				}
 				//CheckOut
 				if(r.getCurrentPage()==10){
 					System.out.println("Billing Information:");
 					System.out.printf("%6s %30s %8s\n\n","Name","Quantity","Price" );
-					UserInterface.displayCheckout(Contents);
+					//UserInterface.displayCheckout(Contents);
 					System.out.print("Are you sure you want to pay? yes or no. ");
 					scannerResult = inputScanner.nextLine();
 					System.out.println("");
@@ -224,13 +264,43 @@ public class HWK4_crawleg {
 
 			} catch (java.util.InputMismatchException e) {
 				System.out.println("\n" + "Please only enter integers" + "\n");
+				System.out.println("\n" + "InputMismatch" + "\n");
 				continue;
-			} catch (java.lang.NumberFormatException e) {
+			} /*catch (java.lang.NumberFormatException e) {
 				System.out.println("\n" + "Please only enter integers" + "\n");
+				System.out.println("\n" + "NumberFormat" + "\n");
 				continue;
-			}
+			}*/
 		}
 		inputScanner.close();
 
+	}
+
+	// Function to search file for string
+	public static boolean search(String s, String f) {
+		File file = new File(f);
+		try {
+			final Scanner fileScanner = new Scanner(file);
+			while (fileScanner.hasNextLine()) {
+				final String lineFromFile = fileScanner.nextLine();
+				// Check for blank
+				if (s == "" || s == "\n") {
+					fileScanner.close();
+					return false;
+				}
+				if (lineFromFile.contains(s)) {
+					fileScanner.close();
+					return true;
+				} else {
+					continue;
+				}
+			}
+			fileScanner.close();
+		}
+
+		catch (FileNotFoundException e) {
+
+		}
+		return false;
 	}
 }

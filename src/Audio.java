@@ -14,9 +14,11 @@ public class Audio extends Item{
 		this.sNo = sNo;
 		this.artistName = artistName;
 		this.name = name;
+		this.quantity = quantity;
 	}
 	protected String name;
 	protected String artistName;
+	protected int quantity;
 	public String getInfo(){
 		String info =String.format("%4d%16s%16s%5d%4d", sNo, name, artistName, price);
 		return info;

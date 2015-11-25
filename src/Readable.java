@@ -13,9 +13,12 @@ public class Readable extends Item {
 		this.sNo = sNo;
 		this.authorName = artistName;
 		this.name = name;
+		this.quantity = quantity;
+		
 	}
 	protected String name;
 	protected String authorName;
+	protected int quantity;
 	public String getInfo(){
 		String info =String.format("%4d%16s%16s%5d%4d", sNo, name, authorName, price);
 		return info;
