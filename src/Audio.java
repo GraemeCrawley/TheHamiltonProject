@@ -8,8 +8,8 @@
 
 public class Audio extends Item{
 	
-	public Audio(int sNo, String name, String artistName, double price, int quantity) { //constructor
-		super(sNo, name, artistName, price, quantity);
+	public Audio(int sNo, String name, String artistName, int price, int quantity, boolean tax) { //constructor
+		super(sNo, name, artistName, price, quantity, tax);
 		this.price = (int) Math.round(price);
 		this.sNo = sNo;
 		this.artistName = artistName;

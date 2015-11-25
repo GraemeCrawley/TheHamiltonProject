@@ -50,7 +50,7 @@ public class User {
 			}
 			
 			}catch (IOException e) {
-			      e.printStackTrace();
+				e.printStackTrace();
 		}
 			
 		//Sign in

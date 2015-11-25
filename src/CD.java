@@ -8,21 +8,33 @@
 
 public class CD extends Audio {
 	
-	public CD(int sNo, String name, String artistName, double price, int quantity) { //constructors of the CDs
-		super(sNo, name, artistName, price, quantity);
+	public CD(int sNo, String name, String artistName, int price, int quantity, boolean tax) { //constructors of the CDs
+		super(sNo, name, artistName, price, quantity, tax);
 		this.price = (int) Math.round(price);
 		this.sNo = sNo;
 		this.artistName = artistName;
 		this.name = name;
 		this.quantity = quantity;
+		this.tax = tax;
 	}
 	protected int quantity;
-	@Override
+	protected boolean tax;
+	
+	
 	public int getPrice(){
+		return price;
+	}
+	public int getSNo(){
+		return sNo;
+	}
+	public boolean getTax(){
+		return tax;
+/*
 		double tax = 0.1;
 		double newPrice = price*(tax+1);
 		Long L = Math.round(newPrice);
 		int finalPrice = Integer.valueOf(L.intValue());
 		return finalPrice;
+*/
 	}
 }
