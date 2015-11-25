@@ -62,7 +62,7 @@ public class HWK4_crawleg {
 					System.out.println("");
 					String data = scannerResult;
 					// Scanning the Userr.txt file...
-					if (search(data, "Userr.txt") == false) {
+					if (search(data, "Users.txt") == false) {
 						r.changeCurrentPage(4);
 						continue;
 					} else {
