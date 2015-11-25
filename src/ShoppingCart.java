@@ -18,14 +18,14 @@ import java.util.Calendar;
 public class ShoppingCart extends User{
 	//private content 
 	
-	private int sNo;
-	private String Title;
-	private String Date;
-	private int Quantity;
-	private static int Price;
-	private static boolean Tax;
+	private int sNo; //initializes serial number of item in cart
+	private String Title; //initializes Titles of item in cart
+	private String Date; // initializes Date of item in cart
+	private int Quantity; //initializes Quantity of item in cart
+	private static int Price; // initializes price of item in cart
+	private static boolean Tax; //initializes tax boolean (which determines if there will be environment tax/shipping on the item
 
-	private static ShoppingCart[] Contents;
+	private static ShoppingCart[] Contents; //initializes array of shopping cart objetcs
 	
 	public ShoppingCart(int s, String t, String d, int q, int p, boolean x){
 		sNo = s;
@@ -88,7 +88,7 @@ public class ShoppingCart extends User{
 	}
 
 	
-	public void addItem(Item m, int n) throws IOException{
+	public static void addItem(Item m, int n, String name) throws IOException{
 		boolean s = true;
 		int prevLength = Contents.length;
 		int d = 0;
@@ -100,10 +100,18 @@ public class ShoppingCart extends User{
 				}
 			}
 		}
+		//Did find it in the file
 		if (s == false){
-			Contents[d].updateQuantity(Item.quantity);
+			Contents[d].updateQuantity(n);
 			Contents[d].updateDate();
+			PrintWriter out = new PrintWriter("Cart_" + name + ".txt");
+			for (int i = 0; i < Contents.length; i++ ){
+				out.println(Contents[i].sNo + ", " + Contents[prevLength].Title + ", " + Contents[prevLength].Date + ", " + Contents[prevLength].Quantity);
+			}
+			out.close();
+			
 		}
+		//Didn't find it in the file
 		else{
 			ShoppingCart[] tempCart = new ShoppingCart[prevLength + 1];
 			for(int i = 0; i < Contents.length; i++){
@@ -111,13 +119,15 @@ public class ShoppingCart extends User{
 			}
 			Contents = tempCart;
 			Contents[prevLength] = new ShoppingCart(Item.sNo,Item.Title,date(),Item.quantity, Item.price, Item.tax);
-			PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("horse.txt", true)));
+			PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("Cart_" + name + ".txt", true)));
 			out.println(Contents[prevLength].sNo + ", " + Contents[prevLength].Title + ", " + Contents[prevLength].Date + ", " + Contents[prevLength].Quantity);
 			out.close();
 		}
 	}
 	
-	public String date(){
+	
+	
+	public static String date(){
 		DateFormat format = new SimpleDateFormat("dd/MM/yyy");
 		Calendar d = Calendar.getInstance();
 		return format.format(d.getTime());
