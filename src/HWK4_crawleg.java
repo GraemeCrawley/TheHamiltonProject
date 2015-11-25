@@ -13,13 +13,13 @@ public class HWK4_crawleg {
 		int n = 0;
 		Scanner inputScanner = new Scanner(System.in);
 		String scannerResult = "";
-		UserInterface s = new UserInterface();
+		UserInterface r = new UserInterface();
 		User u = new User();
-		s.changeCurrentPage(1);
+		r.changeCurrentPage(1);
 		while (n != 3417) {
 			try {
 				//Login Page
-				if (s.getCurrentPage() == 1) {
+				if (r.getCurrentPage() == 1) {
 					System.out.println("1. Sign in");
 					System.out.println("2. Sign up");
 					System.out.print("Choose your option: ");
@@ -28,24 +28,24 @@ public class HWK4_crawleg {
 					n = Integer.parseInt(scannerResult);
 					// If Sign In
 					if (n == 1) {
-						s.changeCurrentPage(3);
+						r.changeCurrentPage(3);
 						continue;
 					}
 					// If Sign Up
 					if (n == 2) {
-						s.changeCurrentPage(2);
+						r.changeCurrentPage(2);
 						continue;
 					}
 
 				}
 				//Choose Username
-				if(s.getCurrentPage()==2){
+				if(r.getCurrentPage()==2){
 					System.out.println("Choose your username:");
 					scannerResult = inputScanner.nextLine();
 					System.out.println("");
 					String data = scannerResult;
 					// If exists
-					if (search(data, "Users.txt") == true) {
+					if (search(data, "Userr.txt") == true) {
 						System.out.println("This name already exists, please choose another" + "\n");
 						continue;
 					}
@@ -53,30 +53,30 @@ public class HWK4_crawleg {
 					else {
 						u.getUsername(data);
 						User.createUsername(data);
-						s.changeCurrentPage(1);
+						r.changeCurrentPage(1);
 					}
 				}
-				if(s.getCurrentPage()==3){
+				if(r.getCurrentPage()==3){
 					System.out.print("Enter your username: ");
 					scannerResult = inputScanner.nextLine();
 					System.out.println("");
 					String data = scannerResult;
-					// Scanning the Users.txt file...
-					if (search(data, "Users.txt") == false) {
-						s.changeCurrentPage(4);
+					// Scanning the Userr.txt file...
+					if (search(data, "Userr.txt") == false) {
+						r.changeCurrentPage(4);
 						continue;
 					} else {
 						System.out.println("Welcome " + data + "\n");
-						s.changeCurrentPage(5);
+						r.changeCurrentPage(5);
 						continue;
 					}
 				}
-				if(s.getCurrentPage()==4){
+				if(r.getCurrentPage()==4){
 					System.out.println("No Access" + "\n");
-					s.changeCurrentPage(1);
+					r.changeCurrentPage(1);
 					continue;
 				}
-				if(s.getCurrentPage()==5){
+				if(r.getCurrentPage()==5){
 					System.out.println("1. View Items By Category");
 					System.out.println("2. View Shopping Cart");
 					System.out.println("3. Sign Out");
@@ -86,21 +86,21 @@ public class HWK4_crawleg {
 					n = Integer.parseInt(scannerResult);
 					// If Sign In
 					if (n == 1) {
-						s.changeCurrentPage(6);
+						r.changeCurrentPage(6);
 						continue;
 					}
 					// If Sign Up
 					if (n == 2) {
-						s.changeCurrentPage(7);
+						r.changeCurrentPage(7);
 						continue;
 					}
 					if (n == 3) {
-						s.changeCurrentPage(1);
+						r.changeCurrentPage(1);
 						continue;
 					}
 					
 				}
-				if(s.getCurrentPage()==6){
+				if(r.getCurrentPage()==6){
 					System.out.println("1. Readables");
 					System.out.println("2. Audio");
 					System.out.println("");
@@ -112,32 +112,83 @@ public class HWK4_crawleg {
 					System.out.println("");
 					n = Integer.parseInt(scannerResult);
 					if (n == 1) {
-						s.changeCurrentPage(8);
+						r.changeCurrentPage(8);
 						continue;
 					}
 					if (n == 2) {
-						s.changeCurrentPage(9);
+						r.changeCurrentPage(9);
 						continue;
 					}
 					if (n == -1) {
-						s.changeCurrentPage(5);
+						r.changeCurrentPage(5);
 						continue;
 					}
 				}
-				if(s.getCurrentPage()==7){
-					s.changeCurrentPage(1);
+				if(r.getCurrentPage()==7){
+					System.out.println("Shopping Cart");
+					System.out.println("");
+					ShoppingCart.displayContents(u.returnUsername());
+					System.out.println("");
+					System.out.println("Press -1 to return to");
+					System.out.println("the previous menu");
+					scannerResult = inputScanner.nextLine();
+					System.out.println("");
+					n = Integer.parseInt(scannerResult);
+					if (n == -1) {
+						r.changeCurrentPage(5);
+						continue;
+					}
+				}
+				//Readables
+				if(r.getCurrentPage()==8){
+					System.out.println("Readables");
+					System.out.println("");
+					r.showReadables();
+					System.out.println("Choose option");
+					System.out.println("Press -1 to return to");
+					System.out.println("the previous menu");
+					scannerResult = inputScanner.nextLine();
+					n = Integer.parseInt(scannerResult);
+					if(n==-1){
+						r.changeCurrentPage(6);
+					}
+					//Assume they've chosen an item
+					else{
+						//check to make sure the number they've entered is valid for the selected type i.e. audio/readable
+						//ask for a quantity
+						int quantity = 0;
+						String title = "harry potter"; //replace with real title
+						String titleType = "Book"; //replace with real type
+						System.out.print("Enter quantity: ");
+						scannerResult = inputScanner.nextLine();
+						quantity = Integer.parseInt(scannerResult);  //change to be specific for the selected item
+						if(quantity == 1){
+							System.out.println(quantity+" "+title+" "+titleType+" added to your cart.");
+						}
+						else{
+							System.out.println(quantity+" "+title+" "+titleType+"s added to your cart.");
+						}
+						System.out.println("Press -2 to Continue Shopping or Press 0 to CheckOut");
+						scannerResult = inputScanner.nextLine();
+						n = Integer.parseInt(scannerResult);
+						if(n==0){
+							r.changeCurrentPage(10);
+						}
+						else if(n==-2){
+							r.changeCurrentPage(6);
+						}
+						
+					}
 					continue;
 				}
-				if(s.getCurrentPage()==8){
-					s.showReadables();
-					break;
-				}
-				if(s.getCurrentPage()==9){
-					s.changeCurrentPage(1);
+				//Audio
+				if(r.getCurrentPage()==9){
+					r.changeCurrentPage(1);
 					continue;
 				}
-				if(s.getCurrentPage()==10){
-					s.changeCurrentPage(1);
+				//CheckOut
+				if(r.getCurrentPage()==10){
+					r.changeCurrentPage(1);
 					continue;
 				}
 
