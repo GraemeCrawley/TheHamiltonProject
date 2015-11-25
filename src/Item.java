@@ -9,7 +9,7 @@
 //Changed this
 
 public abstract class Item{
-	public Item(int sNo, String name, String creator, double price, int quantity) { //constructor
+	public Item(int sNo, String name, String creator, int price, int quantity, boolean tax) { //constructor
 		this.price = (int) Math.round(price);
 		this.sNo = sNo;
 	}

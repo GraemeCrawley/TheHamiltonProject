@@ -18,6 +18,8 @@ public class HWK4_crawleg {
 		UserInterface r = new UserInterface();
 		User u = new User();
 		r.changeCurrentPage(1);
+		r.getReadables();
+		r.getAudioProducts();
 		while (n != 3417) {
 			try {
 				//Login Page
@@ -56,7 +58,7 @@ public class HWK4_crawleg {
 						u.getUsername(data);
 						User.createUsername(data);
 						u.createCart(data, 0);
-						UserInterface.initCart(u.returnUsername());
+						UserInterface.initCart(data);
 						ShoppingCart.setContents(Contents);
 						r.changeCurrentPage(1);
 					}
@@ -73,7 +75,7 @@ public class HWK4_crawleg {
 					} else {
 						u.getUsername(data);
 						u.createCart(data, 1);
-
+						UserInterface.initCart(data);
 						ShoppingCart.setContents(Contents);
 						r.changeCurrentPage(5);
 						continue;
@@ -145,7 +147,7 @@ public class HWK4_crawleg {
 					System.out.println("");
 					n = Integer.parseInt(scannerResult);
 					if (n == -1) {
-						r.changeCurrentPage(5);
+						r.changeCurrentPage(10);
 						continue;
 					}
 				}
@@ -171,7 +173,8 @@ public class HWK4_crawleg {
 						String titleType = "Book"; //replace with real type
 						System.out.print("Enter quantity: ");
 						scannerResult = inputScanner.nextLine();
-						quantity = Integer.parseInt(scannerResult); selectedItem = "random book"; //change to be specific for the selected item
+						quantity = Integer.parseInt(scannerResult); 
+//						selectedItem = "random book"; //change to be specific for the selected item
 						if(quantity == 1){
 							System.out.println(quantity+" "+title+" "+titleType+" added to your cart.");
 						}
@@ -198,7 +201,24 @@ public class HWK4_crawleg {
 				}
 				//CheckOut
 				if(r.getCurrentPage()==10){
-					r.changeCurrentPage(1);
+					System.out.println("Billing Information:");
+					System.out.printf("%6s %30s %8s\n\n","Name","Quantity","Price" );
+					UserInterface.displayCheckout(Contents);
+					System.out.print("Are you sure you want to pay? yes or no. ");
+					scannerResult = inputScanner.nextLine();
+					System.out.println("");
+					String s = scannerResult;
+					if (s.equalsIgnoreCase("yes")){
+						r.changeCurrentPage(1);
+						continue;
+					}
+					if (s.equalsIgnoreCase("no")){
+						r.changeCurrentPage(5);
+						continue;
+					}
+					else{
+						System.out.println("Please only enter yes or no" + "\n");
+					}
 					continue;
 				}
 

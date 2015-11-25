@@ -15,52 +15,59 @@ import java.util.Calendar;
 public class ShoppingCart extends User{
 	//private content 
 	
-	private String serialNo;
+	private int sNo;
 	private String Title;
 	private String Date;
 	private String Quantity;
+	private static int Price;
+	private static boolean Tax;
 
 	private static ShoppingCart[] Contents;
 	
-	public ShoppingCart(String s, String t, String d, String q){
-		serialNo = s;
+	public ShoppingCart(int s, String t, String d, String q, int p, boolean x){
+		sNo = s;
 		Title = t;
 		Date = d;
 		Quantity = q;
+		Price = p;
+		Tax = x;
 	}
-
-	/*
-	public String getContent(ShoppingCart[] s){
-		String 
-		for(int i = 0; i < s.length; i++){
-		}
-	}
-	*/	
 	
+	public static void setPrice(int p){
+		Price = p;
+	}
+	public static void setTax(boolean t){
+		Tax = t;
+	}
 	public static void setContents(ShoppingCart[] s){
 		Contents = s;
+	}	
+	public int getSerialNo(){
+		return sNo;
 	}
-	
-	public String getSerialNo(){
-		return serialNo;
-	}
-	
 	public String getTitle(){
 		return Title;
 	}
-	
 	public String getDate(){
 		return Date;
 	}
-	
 	public String getQuantity(){
 		return Quantity;
 	}
-	
-	public String updateDate(){
-		Date = date();
-		return Date;
+	public int getPrice(){
+		return Price;
 	}
+	public boolean getTax(){
+		return Tax;
+	}
+	public ShoppingCart[] getContents(){
+		return Contents;
+	}
+	
+//	public String updateDate(){
+//		Date = date();
+//		return Date;
+//	}
 	
 	public String updateQuantity(String s){
 		int c = Integer.parseInt(s) + Integer.parseInt(Quantity);
@@ -76,7 +83,8 @@ public class ShoppingCart extends User{
 		}
 		br.close();
 	}
-/*
+
+	/*
 	
 	public void addItem(Item m, int n){
 		boolean s = true;
@@ -89,7 +97,7 @@ public class ShoppingCart extends User{
 				s = false;
 			}
 		}
-		if (s = false){
+		if (s == false){
 			Contents[d].updateQuantity(Item.getQuantity());
 			Contents[d].updateDate();
 		}
@@ -108,8 +116,5 @@ public class ShoppingCart extends User{
 		Calendar d = Calendar.getInstance();
 		return format.format(d.getTime());
 	}
+	*/
 }
-
-	
-
-
