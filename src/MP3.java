@@ -19,6 +19,10 @@ public class MP3 extends Audio{
 	protected int quantity;
 	@Override
 	public int getPrice(){
-		return price;
+		double tax = 0.02;
+		double newPrice = price*(tax+1);
+		Long L = Math.round(newPrice);
+		int finalPrice = Integer.valueOf(L.intValue());
+		return finalPrice;
 	}
 }

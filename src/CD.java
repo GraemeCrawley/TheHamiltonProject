@@ -19,7 +19,7 @@ public class CD extends Audio {
 	protected int quantity;
 	@Override
 	public int getPrice(){
-		double tax = 0.02;
+		double tax = 0.1;
 		double newPrice = price*(tax+1);
 		Long L = Math.round(newPrice);
 		int finalPrice = Integer.valueOf(L.intValue());

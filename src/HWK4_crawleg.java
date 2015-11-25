@@ -66,6 +66,7 @@ public class HWK4_crawleg {
 						r.changeCurrentPage(4);
 						continue;
 					} else {
+						u.getUsername(data);
 						System.out.println("Welcome " + data + "\n");
 						r.changeCurrentPage(5);
 						continue;
@@ -142,12 +143,15 @@ public class HWK4_crawleg {
 				//Readables
 				if(r.getCurrentPage()==8){
 					System.out.println("Readables");
+					//System.out.println("TEST");
 					System.out.println("");
+					//System.out.println("showReadables - HWK4");
 					r.showReadables();
 					System.out.println("Choose option");
 					System.out.println("Press -1 to return to");
 					System.out.println("the previous menu");
 					scannerResult = inputScanner.nextLine();
+					System.out.println("n=scanner");
 					n = Integer.parseInt(scannerResult);
 					if(n==-1){
 						r.changeCurrentPage(6);
@@ -183,7 +187,47 @@ public class HWK4_crawleg {
 				}
 				//Audio
 				if(r.getCurrentPage()==9){
-					r.changeCurrentPage(1);
+					System.out.println("Audio");
+					//System.out.println("TEST");
+					System.out.println("");
+					//System.out.println("showReadables - HWK4");
+					r.showAudioProducts();
+					System.out.println("Choose option");
+					System.out.println("Press -1 to return to");
+					System.out.println("the previous menu");
+					scannerResult = inputScanner.nextLine();
+					System.out.println("n=scanner");
+					n = Integer.parseInt(scannerResult);
+					if(n==-1){
+						r.changeCurrentPage(6);
+					}
+					//Assume they've chosen an item
+					else{
+						//check to make sure the number they've entered is valid for the selected type i.e. audio/readable
+						//ask for a quantity
+						int quantity = 0;
+						String title = "harry potter"; //replace with real title
+						String titleType = "MP3"; //replace with real type
+						System.out.print("Enter quantity: ");
+						scannerResult = inputScanner.nextLine();
+						quantity = Integer.parseInt(scannerResult);  //change to be specific for the selected item
+						if(quantity == 1){
+							System.out.println(quantity+" "+title+" "+titleType+" added to your cart.");
+						}
+						else{
+							System.out.println(quantity+" "+title+" "+titleType+"s added to your cart.");
+						}
+						System.out.println("Press -2 to Continue Shopping or Press 0 to CheckOut");
+						scannerResult = inputScanner.nextLine();
+						n = Integer.parseInt(scannerResult);
+						if(n==0){
+							r.changeCurrentPage(10);
+						}
+						else if(n==-2){
+							r.changeCurrentPage(6);
+						}
+						
+					}
 					continue;
 				}
 				//CheckOut
@@ -194,11 +238,13 @@ public class HWK4_crawleg {
 
 			} catch (java.util.InputMismatchException e) {
 				System.out.println("\n" + "Please only enter integers" + "\n");
+				System.out.println("\n" + "InputMismatch" + "\n");
 				continue;
-			} catch (java.lang.NumberFormatException e) {
+			} /*catch (java.lang.NumberFormatException e) {
 				System.out.println("\n" + "Please only enter integers" + "\n");
+				System.out.println("\n" + "NumberFormat" + "\n");
 				continue;
-			}
+			}*/
 		}
 		inputScanner.close();
 

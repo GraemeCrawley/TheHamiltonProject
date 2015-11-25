@@ -7,7 +7,7 @@
  */
 
 public class eBook extends Readable{
-	public eBook(int sNo, String name, String authorName, double price, int quantity) { //constructors of the CDs
+	public eBook(int sNo, String name, String authorName, int price, int quantity) { //constructors of the CDs
 		super(sNo, name, authorName, price, quantity);
 		this.price = (int) Math.round(price);
 		this.sNo = sNo;
@@ -19,6 +19,10 @@ public class eBook extends Readable{
 
 	@Override
 	public int getPrice(){ // override and only call the parent’s constructor to get the base price.
-		return price;
+		double tax = 0.02;
+		double newPrice = price*(tax+1);
+		Long L = Math.round(newPrice);
+		int finalPrice = Integer.valueOf(L.intValue());
+		return finalPrice;
 	}
 }
