@@ -1,6 +1,9 @@
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -18,13 +21,13 @@ public class ShoppingCart extends User{
 	private int sNo;
 	private String Title;
 	private String Date;
-	private String Quantity;
+	private int Quantity;
 	private static int Price;
 	private static boolean Tax;
 
 	private static ShoppingCart[] Contents;
 	
-	public ShoppingCart(int s, String t, String d, String q, int p, boolean x){
+	public ShoppingCart(int s, String t, String d, int q, int p, boolean x){
 		sNo = s;
 		Title = t;
 		Date = d;
@@ -51,7 +54,7 @@ public class ShoppingCart extends User{
 	public String getDate(){
 		return Date;
 	}
-	public String getQuantity(){
+	public int getQuantity(){
 		return Quantity;
 	}
 	public int getPrice(){
@@ -64,14 +67,14 @@ public class ShoppingCart extends User{
 		return Contents;
 	}
 	
-//	public String updateDate(){
-//		Date = date();
-//		return Date;
-//	}
+	public String updateDate(){
+		Date = date();
+		return Date;
+	}
 	
-	public String updateQuantity(String s){
-		int c = Integer.parseInt(s) + Integer.parseInt(Quantity);
-		Quantity = Integer.toString(c);
+	public int updateQuantity(int s){
+		int c = s + Quantity;
+		Quantity = c;
 		return Quantity;
 	}
 	
@@ -84,21 +87,21 @@ public class ShoppingCart extends User{
 		br.close();
 	}
 
-	/*
 	
-	public void addItem(Item m, int n){
+	public void addItem(Item m, int n) throws IOException{
 		boolean s = true;
 		int prevLength = Contents.length;
-		int d;
-		while (s)
-		for(int i = 0; i < Contents.length; i++){
-			if ((Contents[i].getSerialNo()).equals(Item.getSerialNo())){
-				d = i;
-				s = false;
+		int d = 0;
+		while (s){
+			for(int i = 0; i < Contents.length; i++){
+				if (Contents[i].getSerialNo() == (Item.sNo)){
+					d = i;
+					s = false;
+				}
 			}
 		}
 		if (s == false){
-			Contents[d].updateQuantity(Item.getQuantity());
+			Contents[d].updateQuantity(Item.quantity);
 			Contents[d].updateDate();
 		}
 		else{
@@ -107,8 +110,11 @@ public class ShoppingCart extends User{
 				tempCart[i] = Contents[i];
 			}
 			Contents = tempCart;
-			Contents[prevLength] = ShoppingCart(Item.serialNumber,Item.Title,date(),Item.Quantity)
-			}
+			Contents[prevLength] = new ShoppingCart(Item.sNo,Item.Title,date(),Item.quantity, Item.price, Item.tax);
+			PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("horse.txt", true)));
+			out.println(Contents[prevLength].sNo + ", " + Contents[prevLength].Title + ", " + Contents[prevLength].Date + ", " + Contents[prevLength].Quantity);
+			out.close();
+		}
 	}
 	
 	public String date(){
@@ -116,5 +122,5 @@ public class ShoppingCart extends User{
 		Calendar d = Calendar.getInstance();
 		return format.format(d.getTime());
 	}
-	*/
+	
 }

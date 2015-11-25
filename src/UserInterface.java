@@ -184,7 +184,7 @@ public class UserInterface {
 		for (int i = 0; i < info.length; i++){ 
 			String item = info[i]; 
 			String[] tempArray = item.split(",");
-			cartArray[i] = new ShoppingCart(Integer.parseInt(tempArray[0]), tempArray[1], tempArray[2], tempArray[3], 1, false);
+			cartArray[i] = new ShoppingCart(Integer.parseInt(tempArray[0]), tempArray[1], tempArray[2], Integer.parseInt(tempArray[3]), 1, false);
 			boolean c = true;
 			while (c){
 				for (int j = 0; j < CDArray.length; j++)

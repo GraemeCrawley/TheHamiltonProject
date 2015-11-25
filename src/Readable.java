@@ -9,8 +9,6 @@
 public class Readable extends Item {
 	public Readable(int sNo, String name, String artistName, int price, int quantity, boolean tax) { //constructor
 		super(sNo, name, artistName, price, quantity, tax);
-		this.price = (int) Math.round(price);
-		this.sNo = sNo;
 		this.authorName = artistName;
 		this.name = name;
 		this.quantity = quantity;

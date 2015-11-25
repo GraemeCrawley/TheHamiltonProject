@@ -10,8 +10,6 @@ public class MP3 extends Audio{
 	
 	public MP3(int sNo, String name, String artistName, int price, int quantity, boolean tax) { //constructors of the CDs
 		super(sNo, name, artistName, price, quantity, tax);
-		this.price = (int) Math.round(price);
-		this.sNo = sNo;
 		this.artistName = artistName;
 		this.name = name;
 		this.quantity = quantity;
@@ -27,9 +25,7 @@ public class MP3 extends Audio{
 		int finalPrice = Integer.valueOf(L.intValue());
 		return finalPrice;
 	}
-	public int getSNo(){
-		return sNo;
-	}
+	
 	public boolean getTax(){
 		return tax;
 	}

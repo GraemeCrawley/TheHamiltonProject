@@ -10,11 +10,8 @@ public class Audio extends Item{
 	
 	public Audio(int sNo, String name, String artistName, int price, int quantity, boolean tax) { //constructor
 		super(sNo, name, artistName, price, quantity, tax);
-		this.price = (int) Math.round(price);
-		this.sNo = sNo;
 		this.artistName = artistName;
 		this.name = name;
-		this.quantity = quantity;
 	}
 	protected String name;
 	protected String artistName;
@@ -25,7 +22,6 @@ public class Audio extends Item{
 	}
 	@Override
 	public int getPrice(){
-		int o = 9;
-		return o;
+		return price;
 	}
 }
