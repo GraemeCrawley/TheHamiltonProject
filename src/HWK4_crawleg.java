@@ -1,3 +1,4 @@
+
 /*
  * Name: Gregory Smilski, Graeme Crawley, Alexandria Crump
  * MacID: smilsksi, crawleg, crumpal
@@ -8,9 +9,6 @@ import java.io.*;
 import java.util.Scanner;
 
 public class HWK4_crawleg {
-	
-	public static ShoppingCart[] Contents;
-	
 	public static void main(String[] args) throws IOException {
 		int n = 0;
 		Scanner inputScanner = new Scanner(System.in);
@@ -47,7 +45,7 @@ public class HWK4_crawleg {
 					System.out.println("");
 					String data = scannerResult;
 					// If exists
-					if (r.search(data, "Users.txt") == true) {
+					if (search(data, "Users.txt") == true) {
 						System.out.println("This name already exists, please choose another" + "\n");
 						continue;
 					}
@@ -55,9 +53,6 @@ public class HWK4_crawleg {
 					else {
 						u.getUsername(data);
 						User.createUsername(data);
-						u.createCart(data, 0);
-						UserInterface.initCart(u.returnUsername());
-						ShoppingCart.setContents(Contents);
 						r.changeCurrentPage(1);
 					}
 				}
@@ -67,14 +62,11 @@ public class HWK4_crawleg {
 					System.out.println("");
 					String data = scannerResult;
 					// Scanning the Userr.txt file...
-					if (r.search(data, "Users.txt") == false) {
+					if (search(data, "Userr.txt") == false) {
 						r.changeCurrentPage(4);
 						continue;
 					} else {
-						u.getUsername(data);
-						u.createCart(data, 1);
-						UserInterface.initCart(u.returnUsername());
-						ShoppingCart.setContents(Contents);
+						System.out.println("Welcome " + data + "\n");
 						r.changeCurrentPage(5);
 						continue;
 					}
@@ -119,12 +111,10 @@ public class HWK4_crawleg {
 					scannerResult = inputScanner.nextLine();
 					System.out.println("");
 					n = Integer.parseInt(scannerResult);
-					// If Sign In
 					if (n == 1) {
 						r.changeCurrentPage(8);
 						continue;
 					}
-					// If Sign Up
 					if (n == 2) {
 						r.changeCurrentPage(9);
 						continue;
@@ -171,7 +161,7 @@ public class HWK4_crawleg {
 						String titleType = "Book"; //replace with real type
 						System.out.print("Enter quantity: ");
 						scannerResult = inputScanner.nextLine();
-						quantity = Integer.parseInt(scannerResult); selectedItem = "random book"; //change to be specific for the selected item
+						quantity = Integer.parseInt(scannerResult);  //change to be specific for the selected item
 						if(quantity == 1){
 							System.out.println(quantity+" "+title+" "+titleType+" added to your cart.");
 						}
@@ -212,5 +202,33 @@ public class HWK4_crawleg {
 		}
 		inputScanner.close();
 
+	}
+
+	// Function to search file for string
+	public static boolean search(String s, String f) {
+		File file = new File(f);
+		try {
+			final Scanner fileScanner = new Scanner(file);
+			while (fileScanner.hasNextLine()) {
+				final String lineFromFile = fileScanner.nextLine();
+				// Check for blank
+				if (s == "" || s == "\n") {
+					fileScanner.close();
+					return false;
+				}
+				if (lineFromFile.contains(s)) {
+					fileScanner.close();
+					return true;
+				} else {
+					continue;
+				}
+			}
+			fileScanner.close();
+		}
+
+		catch (FileNotFoundException e) {
+
+		}
+		return false;
 	}
 }
