@@ -16,8 +16,7 @@ public class HWK4_crawleg {
 		UserInterface r = new UserInterface();
 		User u = new User();
 		r.changeCurrentPage(1);
-		//r.getReadables();
-		//r.getAudioProducts();
+		int prevPage = 5;
 		while (n != 3417) {
 			try {
 				//Login Page
@@ -96,15 +95,18 @@ public class HWK4_crawleg {
 					// If Sign In
 					if (n == 1) {
 						r.changeCurrentPage(6);
+						prevPage = 5;
 						continue;
 					}
 					// If Sign Up
 					if (n == 2) {
 						r.changeCurrentPage(7);
+						prevPage = 5;
 						continue;
 					}
 					if (n == 3) {
 						r.changeCurrentPage(1);
+						prevPage = 5;
 						continue;
 					}
 					
@@ -122,21 +124,23 @@ public class HWK4_crawleg {
 					n = Integer.parseInt(scannerResult);
 					if (n == 1) {
 						r.changeCurrentPage(8);
+						prevPage = 6;
 						continue;
 					}
 					if (n == 2) {
 						r.changeCurrentPage(9);
+						prevPage = 6;
 						continue;
 					}
 					if (n == -1) {
-						r.changeCurrentPage(5);
+						r.changeCurrentPage(prevPage);
 						continue;
 					}
 				}
 				if(r.getCurrentPage()==7){
 					System.out.println("Shopping Cart");
 					System.out.println("");
-					ShoppingCart.displayContents(u.returnUsername());
+					//ShoppingCart.displayContents(u.returnUsername());
 					System.out.println("");
 					System.out.println("Press -1 to return to");
 					System.out.println("the previous menu");
@@ -144,16 +148,14 @@ public class HWK4_crawleg {
 					System.out.println("");
 					n = Integer.parseInt(scannerResult);
 					if (n == -1) {
-						r.changeCurrentPage(10);
+						r.changeCurrentPage(prevPage);
 						continue;
 					}
 				}
 				//Readables
 				if(r.getCurrentPage()==8){
 					System.out.println("Readables");
-					//System.out.println("TEST");
 					System.out.println("");
-					//System.out.println("showReadables - HWK4");
 					r.showReadables();
 					System.out.println("Choose option");
 					System.out.println("Press -1 to return to");
@@ -162,7 +164,7 @@ public class HWK4_crawleg {
 					System.out.println("n=scanner");
 					n = Integer.parseInt(scannerResult);
 					if(n==-1){
-						r.changeCurrentPage(6);
+						r.changeCurrentPage(prevPage);
 					}
 					//Assume they've chosen an item
 					else{
@@ -208,7 +210,7 @@ public class HWK4_crawleg {
 					System.out.println("n=scanner");
 					n = Integer.parseInt(scannerResult);
 					if(n==-1){
-						r.changeCurrentPage(6);
+						r.changeCurrentPage(prevPage);
 					}
 					//Assume they've chosen an item
 					else{
@@ -249,6 +251,7 @@ public class HWK4_crawleg {
 					System.out.println("");
 					String s = scannerResult;
 					if (s.equalsIgnoreCase("yes")){
+						//Print confirmation number, ect
 						r.changeCurrentPage(1);
 						continue;
 					}
@@ -264,13 +267,11 @@ public class HWK4_crawleg {
 
 			} catch (java.util.InputMismatchException e) {
 				System.out.println("\n" + "Please only enter integers" + "\n");
-				System.out.println("\n" + "InputMismatch" + "\n");
 				continue;
-			} /*catch (java.lang.NumberFormatException e) {
+			} catch (java.lang.NumberFormatException e) {
 				System.out.println("\n" + "Please only enter integers" + "\n");
-				System.out.println("\n" + "NumberFormat" + "\n");
 				continue;
-			}*/
+			}
 		}
 		inputScanner.close();
 
