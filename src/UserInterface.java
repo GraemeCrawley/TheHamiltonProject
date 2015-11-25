@@ -76,12 +76,12 @@ public class UserInterface {
 	}
 	public void showReadables(){ //Displays all readable for browsing
 		System.out.println(String.format("%-4s%-16s%-16s%-5s%-8s%-6s","sNo","Name","Author", "Price", "Quantity", "Type"));
-		for (int i = 0; i<this.bookArray.length; i++){
+		for (int i = 0; i<6; i++){  // this.eBookArray.length
 			Book book = bookArray[i];
 			String type = "book";
 			System.out.println(String.format("%4d%16s%16s%5d%4d%6s", book.sNo, book.name, book.authorName, book.price, type));
 		}
-		for (int i = 0; i<this.eBookArray.length; i++){
+		for (int i = 0; i<6; i++){  //this.eBookArray.length
 			eBook book = eBookArray[i];
 			String type = "eBook";
 			System.out.println(String.format("%4d%16s%16s%5d%4d%6s", book.sNo, book.name, book.authorName, book.price, type));
